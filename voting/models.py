@@ -14,8 +14,8 @@ class Vote(models.Model):
     """
     A vote on an object by a User.
     """
-    user         = models.ForeignKey(User)
-    content_type = models.ForeignKey(ContentType)
+    user         = models.ForeignKey(User, related_name='user')
+    content_type = models.ForeignKey(ContentType, related_name='content_type')
     object_id    = models.PositiveIntegerField()
     object       = generic.GenericForeignKey('content_type', 'object_id')
     vote         = models.SmallIntegerField(choices=SCORES)
