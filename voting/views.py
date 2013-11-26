@@ -4,10 +4,12 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.views import redirect_to_login
 from django.template import loader, RequestContext
 from django.utils import simplejson
-
+from django.views.decorators.csrf import csrf_exempt
 from voting.models import Vote
 
 VOTE_DIRECTIONS = (('up', 1), ('down', -1), ('clear', 0))
+
+@csrf_exempt
 
 def vote_on_object(request, model, direction, post_vote_redirect=None,
         object_id=None, slug=None, slug_field=None, template_name=None,
